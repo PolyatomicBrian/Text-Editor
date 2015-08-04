@@ -19,7 +19,7 @@ frameBottom.pack(side="bottom")
 scrollbar = Scrollbar(frameBottom)
 scrollbar.pack(side=RIGHT, fill=Y)
 
-txtPaper = Text(frameBottom, wrap="word", relief="ridge", yscrollcommand=scrollbar.set, bg="white")
+txtPaper = Text(frameBottom, wrap="word", relief="ridge", yscrollcommand=scrollbar.set, bg="white", font="Times 12", spacing1=2)
 scrollbar.config(command=txtPaper.yview)
 
 lblFileName = Label(frameTop, text="File Name to Open / Save: ", bg="light blue")
@@ -37,7 +37,6 @@ def openf():
     txt = open(fileName+".txt")
     new()
     txtPaper.insert("1.0",txt.read())
-    txtFileName.delete("1.0",END)
 
 def save():
     fileName = txtFileName.get()
@@ -49,11 +48,10 @@ def save():
     a = txtPaper.get("1.0",END)
     f.write(a)
     f.close()
-    txtFileName.delete("1.0",END)
 
-btnNew = Button(frameTop, text="NEW", command=new, bg="white")
-btnOpen = Button(frameTop,text="OPEN", command=openf, bg="white")
-btnSave = Button(frameTop, text="SAVE", command=save, bg="white")
+btnNew = Button(frameTop, text="NEW", command=new, bg="white", cursor="hand2")
+btnOpen = Button(frameTop,text="OPEN", command=openf, bg="white", cursor="hand2")
+btnSave = Button(frameTop, text="SAVE", command=save, bg="white", cursor="hand2")
 
 
 def select_all(event):
