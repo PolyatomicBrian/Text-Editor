@@ -24,7 +24,14 @@ scrollbar.config(command=txtPaper.yview)
 
 lblFileName = Label(frameTop, text="File Name to Open / Save: ", bg="light blue")
 
+fontChoice = StringVar(root)
+fontChoice.set("Times")
+
+
 txtFileName = Entry(frameTop)
+
+def changeFont(fontPicked):
+    txtPaper.config(font=fontPicked)
 
 def new():
     txtPaper.delete('1.0', END)
@@ -53,6 +60,7 @@ btnNew = Button(frameTop, text="NEW", command=new, bg="white", cursor="hand2")
 btnOpen = Button(frameTop,text="OPEN", command=openf, bg="white", cursor="hand2")
 btnSave = Button(frameTop, text="SAVE", command=save, bg="white", cursor="hand2")
 
+fontMenu = OptionMenu(frameTop, fontChoice, "Times", "Nyala", "Calibri", command=changeFont)
 
 def select_all(event):
     txtPaper.tag_add(SEL, "1.0", END)
@@ -68,6 +76,7 @@ btnOpen.grid(row=1,column=2,padx=(20,0),pady=(40,0))
 btnSave.grid(row=1,column=3,padx=(20,0),pady=(40,0))
 lblFileName.grid(row=1,column=4,padx=(20,0),pady=(40,0))
 txtFileName.grid(row=1,column=5,pady=(40,0))
+fontMenu.grid(row=1,column=6, padx=(20,0),pady=(40,0))
 txtPaper.pack()
 
 root.mainloop()
